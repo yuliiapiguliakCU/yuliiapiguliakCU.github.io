@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error-Filled Page</title>
+</head>
+<body>
+    <h1>Welcome to My Error-Filled Page</h1>
+    
+    <p>This is a paragraph with mismatched tags and missing closing tags.</p>
+    
+    <ol>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+        <li>Item 10</li>
+    </ol>
+
+    <p>This is another paragraph without proper indentation.</p>
+    
+    <img src="image.jpg" alt="Image Image">
+
+    <a href="https://www.example.com" target="_blank">Click me!</a>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Jane</td>
+            <td>30</td>
+        </tr>
+    </table>
+    <img src="error.jpeg" alt="Error Image">
+
+    <div style="text-align: center;">This is centered text.</div>
+
+    <p style="background-color: lightgray;">Text</p>
+
+    <input type="button" value="Click me" onclick="alert('Error')">
+
+    <!-- This is an unclosed comment -->
+
+    <a href="#">Link without closing tag</a>
+
+    <p><u>Underlined text</u></p>
+
+    <dl>
+        <dt>Descriptive Item Title</dt>
+        <dd>Descriptive Item Text</dd>
+    </dl>
+</body>
+</html>
+
+<!-- List of Errors 
+Error 1: Missing <!DOCTYPE html> declaration. Added at the beginning of the document at line 1.
+Error 2: Nested <html> tag. Removed <html language="en"> tag and changed <html> to <html lang="en"> at line 2.
+Error 3: Missing <meta charset="UTF-8"> and <meta name="viewport" content="width=device-width, initial-scale=1.0"> in the <head>. Added them at lines 4,5.
+Error 4: <head> tag is not propeerly closed after the <title> tag. Added </head> tag at line 7.
+Error 5: Missing headings </h1> closing tag. Added </h1> after "Welcome to My Error-Filled Page".
+Error 6: Missing paragraph opening tag. Added <p> tag at the beginning at line 11.
+Error 7: Mismatch between the opening and closing tags for the list. List starts with ordered list but ends with unordered one. Changed the closing tag to </ol> at line 24.
+Error 8: Missing closing paragraph tag. Added </p> tag at the end at line 26.
+Error 9: Missing alt attribute in <img src="image.jpg"> tag. Added it to describe an image at line 28.
+Error 10: Incorrect closing tag for anchor. Changed </img> to </a> at line 30.
+Error 11: Incorrect closing tag in the table for John's age. Instead <td>, used </td>.
+Error 12: Missed the closing <table> tag. Added it at line 45.
+Error 13: The img tag had source instead of src. Changed to src after img at line 46.
+Error 14: <center> is deprecated. Used CSS to center the content: <div style="text-align: center;">This is centered text.</div> at line 48.
+Error 15: <bgcolor> is not used. Corrected using CSS <p style="background-color: lightgray;">Text</p> at line 50.
+Error 16: 'Click me' button missing functionality. Added onclick="alert('Error')" after the value at line 52.
+Error 17: Comment was not closed and remaining content was ignored. Used -> after the text at line 54.
+Error 18: Anchor tag <a href="#"> did not have a closing tag. Added </a> at line 56.
+Error 19: </em> was incorrectly closed after the <p> tag. Switched the places with </p> to fix the order of the closing tags.
+Error 20: Wrong tag is used for underlined text. Changed <em> to <u> and </u> at line 58.
+Error 21: Wrong use of <li> tag within the <dl>. For the desciption list <dl>, changed <li> and </li> to <dt> and </dt> for title at line 61.
+Error 22: Same problem at line 62. Changed tags to <dd> and </dd> for the text. 
+-->
