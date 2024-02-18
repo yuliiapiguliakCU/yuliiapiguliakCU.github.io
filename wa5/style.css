@@ -1,0 +1,107 @@
+/* General page styles */
+
+body {
+  margin: 0;
+}
+
+html {
+  font-family: 'Helvetica neue', Arial, 'sans serif';
+  font-size: 10px;
+  background-color: #ccc;
+}
+
+/* Selectors to be matched up with rulesets */
+
+/* Card container styles */
+.card {
+  width: 35em;
+  height: 22em;
+  margin: 5em auto;
+  background-color: red;
+  border: 0.2em solid black;
+  border-radius: 1.5em;
+}
+
+/* Header styles */
+.card header {
+  background-image: linear-gradient(to bottom,rgba(0,0,0,0.1), rgba(0,0,0,0));
+  border-radius: 1.5em 1.5em 0 0;
+}
+
+/* Footer styles */
+.card footer {
+  background-image: linear-gradient(to bottom,rgba(0,0,0,0), rgba(0,0,0,0.1));
+  border-radius: 0 0 1.5em 1.5em;
+}
+
+/* Main business card contents styles */
+.card article img {
+  max-height: 100%;
+  float: right;
+}
+
+/* Rulesets to be matched up with selectors */
+
+h2, p {
+ margin: 0;
+}
+
+/* Article content styles */
+article {
+  height: 12em;
+  background-color: rgba(0, 0, 0, 0.35); 
+}
+
+/* Header and Footer styles */
+.card header, .card footer {
+  height: 3.125em;
+  padding: 1em; 
+}
+
+/* h2 heading styles */
+h2{
+  font-size: 2em;
+  line-height: 1.5em;
+}
+
+/* Paragraph styles */
+p{
+  font-size: 1.25em;
+  line-height: 1.5em;
+}
+
+/* Footer paragraph styles */
+footer p{
+  line-height: 2em;
+}
+
+/* Article paragraph styles */
+.card article p{
+  color: rgba(255,255,255,.75);
+  font-size: 0.938em;
+  padding-left: 1em;
+  padding-top: 1em;
+}
+
+.card2 {
+  background-color: #fff9db;
+  border-color: #ffd700;
+  font-family: 'Gill Sans', 'sans-serif';
+  }
+  
+  .card2 header {
+  background-image: linear-gradient(to bottom, #f9e076, #ffd700); 
+  }
+  
+  .card2 footer {
+  background-image: linear-gradient(to top, #f9e076, #ffd700); 
+  }
+
+  .card2 article {
+    background-color: #fff9db;
+  }
+
+  .card2 article p {
+    color: #333;
+  }
+  
