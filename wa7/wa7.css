@@ -64,7 +64,7 @@ nav a {
 }
 
 
-@media screen and (max-width: 499px) {
+@media screen and (max-width: 500px) {
   
   .grid {
       display: flex;
