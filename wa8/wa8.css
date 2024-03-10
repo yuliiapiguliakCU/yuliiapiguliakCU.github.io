@@ -1,0 +1,96 @@
+body {
+  background-image: linear-gradient(#000428 0%, #004e92 100%);
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Verdana', sans-serif;
+  min-height: 100vh; 
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40px;
+  background-color:beige;
+}
+
+nav a {
+  width: 20vw;
+  text-align: center;
+  text-decoration: none;
+  color:cadetblue;
+  font-size: 30px;
+  transition: color 0.5s, transform 0.5s;
+}
+
+nav a:hover {
+  color: purple; 
+}
+
+img {
+  border: none; 
+  width: auto; 
+  height: auto; 
+  display: block; 
+  background-color: transparent; 
+}
+
+img:hover {
+  animation: pulse 2s infinite; 
+}
+
+h1 {
+  color:cornflowerblue;
+  transition: color 0.5s, transform 0.5s; 
+}
+
+h1:hover {
+  color: yellow; 
+}
+
+#bouncing-star {
+  width: 50px;
+  height: 50px;
+  background-color: gold; 
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  position: absolute;
+  animation: diagonalBounce 10s linear infinite;
+}
+@keyframes diagonalBounce {
+  0%, 100% {
+    left: -50px;
+    top: -50px;
+  }
+  25%, 75% {
+    left: 50vw;
+    top: 50vh;
+  }
+  50% {
+    left: 100vw;
+    top: 100vh;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes moveAcross {
+  from {
+    left: -50px; 
+  }
+  to {
+    left: 100vw; 
+  }
+}
