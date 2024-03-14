@@ -1,0 +1,144 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+    color: black;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #34568B;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 1.5s ease-out;
+}
+
+header p {
+    font-size: 1.1rem;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.concert {
+    background-color: #ffffff;
+    color: black;
+    border: 2px solid #FF6F61;
+    padding: 20px;
+    border-radius: 15px;
+    width: calc(100% - 40px);
+    max-width: 800px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concert:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.concert h2, .concert h3, .concert .dates {
+    background-color: #34568B;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.concert:hover h2, .concert:hover h3, .concert:hover .dates {
+    background-color: #FF6F61;
+}
+
+
+.concert p, .concert ul li {
+    margin: 15px 0;
+    transition: color 0.3s ease;
+}
+
+.concert ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.concert ul li::before {
+    content: "♫";
+    color: #34568B;
+    margin-right: 10px;
+}
+
+.concert img {
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 10px auto; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+footer {
+    background-color: #2e2e2e;
+    color: #FF6F61;
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    border-top: 3px solid #957DAD;
+}
+
+footer a {
+    color: #FF6F61;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 768px) {
+    main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    main {
+        grid-template-columns: repeat(3, minmax(350px, 1fr)); 
+    }
+}
