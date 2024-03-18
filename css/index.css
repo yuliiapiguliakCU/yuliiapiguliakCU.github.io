@@ -144,9 +144,9 @@ footer {
     background-color: #2e2e2e;
     color: #FF6F61;
     text-align: center;
-    padding: 20px;
+    padding: 5px;
     font-size: 1.2rem;
-    border-top: 3px solid #957DAD;
+    border-top: 1px solid #957DAD;
 }
 
 .footer-bottom a {
@@ -187,7 +187,7 @@ footer {
 
 .music-icon {
     display: inline-block;
-    background: url('musicnotes.png') no-repeat;
+    background: url('/css/musicnotes.png') no-repeat;
     background-size: contain;
     width: 350px;
     height: 300px;
