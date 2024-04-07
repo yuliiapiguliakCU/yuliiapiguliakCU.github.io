@@ -1,0 +1,60 @@
+h1 {
+  font-family: 'Merriweather', serif;
+  text-align: center;
+  font-size: 30px;
+  color: green;
+  padding: 20px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;}
+
+body {
+  width: 80%;
+  max-width: 640px;
+  margin: 0 auto;
+  color: #444;
+  background-color: #e0ffec;
+  }
+  
+  
+
+.full-img {
+  position: relative;
+  display: block;
+  width: 640px;
+  height: 480px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 480px;
+  background-color: rgba(0,0,0,0);
+}
+
+button {
+  background: #4CAF50;
+  color: white;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  position: absolute;
+  cursor: pointer;
+  top: 2px;
+  right: 2px;
+  transition: background-color 0.3s; 
+}
+
+button:hover {
+  background: #367c39; 
+}
+
+
+.thumb-bar img {
+  display: block;
+  width: 20%;
+  float: left;
+  cursor: pointer;
+}
