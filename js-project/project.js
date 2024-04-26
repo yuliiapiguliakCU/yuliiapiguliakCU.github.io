@@ -50,13 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 volume = Math.floor((currentPhrase.length / targetPhrase.length) * 100);
                 volumeDisplay.textContent = volume;
                 currentPhraseDisplay.textContent = currentPhrase.split('').join(' ') + ' _'.repeat(targetPhrase.length - currentPhrase.length);
-                this.style.color = '#0f0';  // Flash green for correct choice
+                this.style.color = '#0f0';  
                 if (currentPhrase === targetPhrase) {
                     completionMessage.style.display = 'block';
                     completionMessage.textContent = 'Congratulations! Volume is set to MAX!';
                 }
             } else {
-                this.style.color = '#f00';  // Flash red for incorrect choice
+                this.style.color = '#f00';  
             }
         };
 
@@ -65,14 +65,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startFallingLetters() {
-        clearInterval(letterInterval);  // Clear any existing interval
+        clearInterval(letterInterval);  
         const targetPhrase = "CHANGEVOLUME";
         letterInterval = setInterval(() => {
             let letter;
-            // Increase the probability of dropping a letter from "CHANGEVOLUME"
-            if (Math.random() < 0.7) {  // 70% chance to pick from "CHANGEVOLUME"
+            if (Math.random() < 0.7) {  
                 letter = targetPhrase[Math.floor(Math.random() * targetPhrase.length)];
-            } else {  // 30% chance to pick any letter from the alphabet
+            } else {  
                 letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
             }
             addLetter(letter);
@@ -89,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     restartBtn.addEventListener('click', function() {
-        stopSound(correctSound); // Ensure any playing correct sound is stopped
+        stopSound(correctSound); 
         currentPhrase = "";
         volume = 0;
         volumeDisplay.textContent = "0";
