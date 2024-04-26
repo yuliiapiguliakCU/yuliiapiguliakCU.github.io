@@ -1,5 +1,3 @@
-let hasPlayedSound = false; // Flag to check if the correct sound has been played
-
 document.addEventListener('DOMContentLoaded', function() {
     const volumeDisplay = document.getElementById('volume');
     const currentPhraseDisplay = document.getElementById('current-phrase');
@@ -9,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPhrase = "";
     let volume = 0;
     let letterInterval;
+    let hasPlayedSound = false;
 
     const correctSound = document.getElementById('correctSound');
     const incorrectSound = document.getElementById('incorrectSound');
@@ -22,6 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return color;
     }
 
+    function playSound(sound) {
+        sound.pause();
+        sound.currentTime = 0;
+        sound.play();
+    }
+
+    function stopSound(sound) {
+        sound.pause();
+        sound.currentTime = 0;
+    }
+
     function addLetter(letter) {
         const letterElement = document.createElement('div');
         letterElement.textContent = letter;
@@ -29,21 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
         letterElement.style.left = `${Math.random() * (window.innerWidth - 60)}px`;
         letterElement.style.color = getRandomColor(); 
 
-        function playSound(sound) {
-            if (!sound.paused) {
-                sound.pause();
-                sound.currentTime = 0;
-            }
-            sound.play();
-        }
-
         letterElement.onclick = function() {
-            // Play sound only on the first click of any letter
             if (!hasPlayedSound) {
-                playSound(correctSound); // Assuming you want to play the correct sound for any first click
+                playSound(correctSound);  // Play correct sound on first click of any letter
                 hasPlayedSound = true;
             }
-        
+
             if (targetPhrase[currentPhrase.length] === letter) {
                 currentPhrase += letter;
                 volume = Math.floor((currentPhrase.length / targetPhrase.length) * 100);
@@ -64,31 +65,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startFallingLetters() {
-        if (letterInterval) {
-            clearInterval(letterInterval);
-        }
-        const targetLetters = "CHANGEVOLUME";
-        let lastLetterWasTarget = false;
+        clearInterval(letterInterval);  // Clear any existing interval
+        const targetPhrase = "CHANGEVOLUME";
         letterInterval = setInterval(() => {
             let letter;
-            if (lastLetterWasTarget) {
+            // Increase the probability of dropping a letter from "CHANGEVOLUME"
+            if (Math.random() < 0.7) {  // 70% chance to pick from "CHANGEVOLUME"
+                letter = targetPhrase[Math.floor(Math.random() * targetPhrase.length)];
+            } else {  // 30% chance to pick any letter from the alphabet
                 letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
-                lastLetterWasTarget = false;
-            } else {
-                letter = targetLetters[Math.floor(Math.random() * targetLetters.length)];
-                lastLetterWasTarget = true;
             }
             addLetter(letter);
         }, 250);
     }
 
+    function clearFallingLetters() {
+        const existingLetters = document.querySelectorAll('.letter');
+        existingLetters.forEach(letter => {
+            if (letter.parentNode) {
+                letter.parentNode.removeChild(letter);
+            }
+        });
+    }
+
     restartBtn.addEventListener('click', function() {
+        stopSound(correctSound); // Ensure any playing correct sound is stopped
         currentPhrase = "";
         volume = 0;
         volumeDisplay.textContent = "0";
         currentPhraseDisplay.textContent = '_'.repeat(targetPhrase.length);
         completionMessage.style.display = 'none';
-        hasPlayedSound = false;  // Reset the sound flag to allow sound play again for next game
+        clearFallingLetters();
+        clearInterval(letterInterval);
+        hasPlayedSound = false;
         startFallingLetters();  // Restart falling letters
     });
 
