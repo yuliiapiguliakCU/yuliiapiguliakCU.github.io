@@ -1,3 +1,5 @@
+let hasPlayedSound = false; // Flag to check if the correct sound has been played
+
 document.addEventListener('DOMContentLoaded', function() {
     const volumeDisplay = document.getElementById('volume');
     const currentPhraseDisplay = document.getElementById('current-phrase');
@@ -10,8 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const correctSound = document.getElementById('correctSound');
     const incorrectSound = document.getElementById('incorrectSound');
-
-
 
     function getRandomColor() {
         const letters = '0123456789ABCDEF';
@@ -29,30 +29,39 @@ document.addEventListener('DOMContentLoaded', function() {
         letterElement.style.left = `${Math.random() * (window.innerWidth - 60)}px`;
         letterElement.style.color = getRandomColor(); 
 
+        function playSound(sound) {
+            if (!sound.paused) {
+                sound.pause();
+                sound.currentTime = 0;
+            }
+            sound.play();
+        }
+
         letterElement.onclick = function() {
+            // Play sound only on the first click of any letter
+            if (!hasPlayedSound) {
+                playSound(correctSound); // Assuming you want to play the correct sound for any first click
+                hasPlayedSound = true;
+            }
+        
             if (targetPhrase[currentPhrase.length] === letter) {
                 currentPhrase += letter;
                 volume = Math.floor((currentPhrase.length / targetPhrase.length) * 100);
                 volumeDisplay.textContent = volume;
                 currentPhraseDisplay.textContent = currentPhrase.split('').join(' ') + ' _'.repeat(targetPhrase.length - currentPhrase.length);
                 this.style.color = '#0f0';  // Flash green for correct choice
-                correctSound.play(); 
                 if (currentPhrase === targetPhrase) {
                     completionMessage.style.display = 'block';
                     completionMessage.textContent = 'Congratulations! Volume is set to MAX!';
                 }
             } else {
                 this.style.color = '#f00';  // Flash red for incorrect choice
-                incorrectSound.play(); 
             }
         };
-        
 
         document.body.appendChild(letterElement);
         setTimeout(() => document.body.removeChild(letterElement), 5000);  
     }
-
-    
 
     function startFallingLetters() {
         if (letterInterval) {
@@ -79,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         volumeDisplay.textContent = "0";
         currentPhraseDisplay.textContent = '_'.repeat(targetPhrase.length);
         completionMessage.style.display = 'none';
+        hasPlayedSound = false;  // Reset the sound flag to allow sound play again for next game
         startFallingLetters();  // Restart falling letters
     });
 
