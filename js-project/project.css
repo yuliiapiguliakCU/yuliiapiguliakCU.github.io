@@ -1,70 +1,103 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
-    background: #101010;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  h1, p {
-    text-align: center;
-  }
-  
-  .controls {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #555;
-  }
-  
-  .letter {
-    position: fixed;
-    cursor: pointer;
-    user-select: none;
-    font-size: 48px;
-    color: #f06;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px #48f;
-    animation: fall 5s linear infinite;
-  }
-  
-  @keyframes fall {
-    from {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: #101010;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, p {
+  text-align: center;
+}
+
+.instructions {
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.letter {
+  position: fixed;
+  cursor: pointer;
+  user-select: none;
+  font-size: 48px;
+  color: #f06; /* Initial color */
+  animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+  from {
       top: -60px;
-    }
-    to {
-      top: 100%;
-    }
   }
-  
-  .letter:hover {
-    transform: scale(1.2);
-    text-shadow: 0 0 15px #fff, 0 0 30px #48f;
+  to {
+      top: 100vh;  /* Ensure this reaches the very bottom */
   }
-  
-  #completion-message {
-    text-align: center;
-    font-size: 24px;
-    color: green;
-    display: none;
-    position: fixed;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+}
+
+
+.letter:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 15px #fff, 0 0 30px #48f;
+}
+
+#completion-message {
+  text-align: center;
+  font-size: 24px;
+  color: green;
+  display: none;
+  position: fixed;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+      opacity: 1;
   }
-  
+  50% {
+      transform: scale(1.05);
+      opacity: 0.7;
+  }
+  100% {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+#completion-message {
+  display: none;  /* Make sure it's hidden initially */
+  text-align: center;
+  font-size: 24px;
+  color: green;
+  position: fixed;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: pulse 2s infinite;  /* Apply the pulse animation */
+}
