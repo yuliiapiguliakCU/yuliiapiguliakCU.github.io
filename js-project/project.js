@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         letterElement.textContent = letter;
         letterElement.className = 'letter';
         letterElement.style.left = `${Math.random() * (window.innerWidth - 60)}px`;
-        letterElement.style.color = getRandomColor(); // Set a random color initially
+        letterElement.style.color = getRandomColor(); 
 
         letterElement.onclick = function() {
             if (targetPhrase[currentPhrase.length] === letter) {
@@ -36,20 +36,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 volumeDisplay.textContent = volume;
                 currentPhraseDisplay.textContent = currentPhrase.split('').join(' ') + ' _'.repeat(targetPhrase.length - currentPhrase.length);
                 this.style.color = '#0f0';  // Flash green for correct choice
-                correctSound.play(); // Play correct sound
+                correctSound.play(); 
                 if (currentPhrase === targetPhrase) {
                     completionMessage.style.display = 'block';
                     completionMessage.textContent = 'Congratulations! Volume is set to MAX!';
                 }
             } else {
                 this.style.color = '#f00';  // Flash red for incorrect choice
-                incorrectSound.play(); // Play incorrect sound
+                incorrectSound.play(); 
             }
         };
         
 
         document.body.appendChild(letterElement);
-        setTimeout(() => document.body.removeChild(letterElement), 5000);  // Remove letter after it falls out of view
+        setTimeout(() => document.body.removeChild(letterElement), 5000);  
     }
 
     
@@ -63,11 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
         letterInterval = setInterval(() => {
             let letter;
             if (lastLetterWasTarget) {
-                // After a target letter, choose randomly from the entire alphabet
                 letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
                 lastLetterWasTarget = false;
             } else {
-                // Higher chance to choose from the target phrase
                 letter = targetLetters[Math.floor(Math.random() * targetLetters.length)];
                 lastLetterWasTarget = true;
             }

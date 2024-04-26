@@ -45,7 +45,7 @@ button:hover {
   cursor: pointer;
   user-select: none;
   font-size: 48px;
-  color: #f06; /* Initial color */
+  color: #f06; 
   animation: fall 5s linear infinite;
 }
 
@@ -54,7 +54,7 @@ button:hover {
       top: -60px;
   }
   to {
-      top: 100vh;  /* Ensure this reaches the very bottom */
+      top: 100vh; 
   }
 }
 
@@ -91,7 +91,7 @@ button:hover {
 }
 
 #completion-message {
-  display: none;  /* Make sure it's hidden initially */
+  display: none;  
   text-align: center;
   font-size: 24px;
   color: green;
@@ -99,5 +99,5 @@ button:hover {
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
-  animation: pulse 2s infinite;  /* Apply the pulse animation */
+  animation: pulse 2s infinite; 
 }
