@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         letterElement.onclick = function() {
             if (!hasPlayedSound) {
-                playSound(correctSound);  // Play correct sound on first click of any letter
+                playSound(correctSound);
                 hasPlayedSound = true;
             }
 
@@ -50,26 +50,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 volume = Math.floor((currentPhrase.length / targetPhrase.length) * 100);
                 volumeDisplay.textContent = volume;
                 currentPhraseDisplay.textContent = currentPhrase.split('').join(' ') + ' _'.repeat(targetPhrase.length - currentPhrase.length);
-                this.style.color = '#0f0';  
+                this.style.color = '#0f0';
                 if (currentPhrase === targetPhrase) {
                     completionMessage.style.display = 'block';
                     completionMessage.textContent = 'Congratulations! Volume is set to MAX!';
                 }
             } else {
-                this.style.color = '#f00';  
+                this.style.color = '#f00';
             }
         };
 
         document.body.appendChild(letterElement);
-        setTimeout(() => document.body.removeChild(letterElement), 5000);  
+        setTimeout(() => {
+            if (letterElement.parentNode) {
+                document.body.removeChild(letterElement);
+            }
+        }, 5000);
     }
 
     function startFallingLetters() {
-        clearInterval(letterInterval);  
-        const targetPhrase = "CHANGEVOLUME";
+        clearInterval(letterInterval);
         letterInterval = setInterval(() => {
             let letter;
-            if (Math.random() < 0.7) {  
+            if (Math.random() < 0.7) { 
                 letter = targetPhrase[Math.floor(Math.random() * targetPhrase.length)];
             } else {  
                 letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
@@ -87,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    restartBtn.addEventListener('click', function() {
+    function restartGame() {
         stopSound(correctSound); 
         currentPhrase = "";
         volume = 0;
@@ -97,8 +100,10 @@ document.addEventListener('DOMContentLoaded', function() {
         clearFallingLetters();
         clearInterval(letterInterval);
         hasPlayedSound = false;
-        startFallingLetters();  // Restart falling letters
-    });
+        startFallingLetters(); 
+    }
 
-    startFallingLetters(); // Initial call to start the game
+    restartBtn.addEventListener('click', restartGame);
+
+    startFallingLetters(); 
 });

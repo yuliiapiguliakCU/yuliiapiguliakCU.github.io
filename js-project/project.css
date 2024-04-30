@@ -44,8 +44,9 @@ button:hover {
   position: fixed;
   cursor: pointer;
   user-select: none;
-  font-size: 48px;
-  color: #f06; 
+  font-size: 56px;
+  color: #f06;
+  font-weight: bold; 
   animation: fall 5s linear infinite;
 }
 
@@ -100,4 +101,8 @@ button:hover {
   top: 50%;
   transform: translateY(-50%);
   animation: pulse 2s infinite; 
+}
+
+.red-text {
+  color: lightcoral;
 }
