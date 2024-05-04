@@ -22,7 +22,7 @@ h1, p {
 .controls {
   display: flex;
   justify-content: center;
-  margin: 10px 0;
+  margin: 10px 0; 
 }
 
 button {
@@ -59,7 +59,6 @@ button:hover {
   }
 }
 
-
 .letter:hover {
   transform: scale(1.2);
   text-shadow: 0 0 15px #fff, 0 0 30px #48f;
@@ -74,6 +73,7 @@ button:hover {
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
+  animation: pulse 2s infinite; 
 }
 
 @keyframes pulse {

@@ -3,23 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Falling Letters Volume Control</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Interactive game to control volume by clicking falling letters, with special rules for letters X, Y, and Z.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="project.css">
-<audio id="correctSound" src="movement-200697.mp3" preload="auto" style="display:none;"></audio>
-<audio id="incorrectSound" src="movement-200697.mp3" preload="auto" style="display:none;"></audio>
-
 </head>
 <body>
 <h1>Falling Letters Volume Control</h1>
 <div class="instructions">
-    <p>Click the falling letters to form the word <span class="red-text">CHANGEVOLUME</span> to adjust the volume!</p>
+    <p>Click the falling letters to form the word <span class="red-text">CHANGEVOLUME</span> to set the volume to max!</p>
+    <p>Clicking <span class="red-text">X</span>, <span class="red-text">Y</span>, or <span class="red-text">Z</span> decreases the volume by 8%, 16%, and 32% respectively. Other letters decrease the volume by 5%.</p>
+    <p>Once the volume is set to max, clicking any letter will restart to reach max volume again.</p>
+    <p>Volume ranges from 0% to 100%.</p>
 </div>
 <p>Current Word: <span id="current-phrase">_ _ _ _ _ _ _ _ _ _ _ _</span></p>
 <p>Volume: <span id="volume">0</span>%</p>
 <div class="controls">
-    <button id="restart-btn">Restart</button>
+    <button id="restart-btn" aria-label="Restart game">Restart</button>
 </div>
 <div id="completion-message"></div>
-<script src="project.js"></script>
+<audio id="correctSound" src="movement-200697.mp3" preload="auto" style="display:none;" aria-label="Correct letter sound"></audio>
+<audio id="incorrectSound" src="movement-200697.mp3" preload="auto" style="display:none;" aria-label="Incorrect letter sound"></audio>
+<script src="project.js" defer></script>
 </body>
 </html>

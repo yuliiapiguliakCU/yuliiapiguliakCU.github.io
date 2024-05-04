@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let volume = 0;
     let letterInterval;
     let hasPlayedSound = false;
+    let isCompleted = false; //checks for completed word
 
     const correctSound = document.getElementById('correctSound');
     const incorrectSound = document.getElementById('incorrectSound');
@@ -32,19 +33,34 @@ document.addEventListener('DOMContentLoaded', function() {
         sound.currentTime = 0;
     }
 
+    function restartGame() {
+        stopSound(correctSound);
+        currentPhrase = "";
+        volume = 0;
+        volumeDisplay.textContent = "0";
+        currentPhraseDisplay.textContent = '_'.repeat(targetPhrase.length);
+        completionMessage.style.display = 'none';
+        clearFallingLetters();
+        clearInterval(letterInterval);
+        hasPlayedSound = false;
+        isCompleted = false;
+        startFallingLetters();
+    }
+
     function addLetter(letter) {
         const letterElement = document.createElement('div');
         letterElement.textContent = letter;
         letterElement.className = 'letter';
+        letterElement.style.top = '-30px'; 
         letterElement.style.left = `${Math.random() * (window.innerWidth - 60)}px`;
-        letterElement.style.color = getRandomColor(); 
+        letterElement.style.color = getRandomColor();
 
         letterElement.onclick = function() {
             if (!hasPlayedSound) {
                 playSound(correctSound);
                 hasPlayedSound = true;
             }
-
+        
             if (targetPhrase[currentPhrase.length] === letter) {
                 currentPhrase += letter;
                 volume = Math.floor((currentPhrase.length / targetPhrase.length) * 100);
@@ -54,16 +70,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (currentPhrase === targetPhrase) {
                     completionMessage.style.display = 'block';
                     completionMessage.textContent = 'Congratulations! Volume is set to MAX!';
+                    isCompleted = true;
                 }
             } else {
                 this.style.color = '#f00';
+                const volumeDecreaseLetters = {'X': 8, 'Y': 16, 'Z': 32};
+                if (volumeDecreaseLetters[letter]) {
+                    volume -= volumeDecreaseLetters[letter];
+                } else {
+                    volume -= 5; //5%
+                }
+                volume = Math.max(volume, 0);
+                volumeDisplay.textContent = volume;
+        
+                if (isCompleted) { //restart game
+                    restartGame();
+                }
             }
         };
+        
 
         document.body.appendChild(letterElement);
         setTimeout(() => {
             if (letterElement.parentNode) {
-                document.body.removeChild(letterElement);
+                letterElement.parentNode.removeChild(letterElement);
             }
         }, 5000);
     }
@@ -72,14 +102,16 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(letterInterval);
         letterInterval = setInterval(() => {
             let letter;
-            if (Math.random() < 0.7) { 
+            const extendedLetters = "CHANGEVOLUMEXYZ"; //these letters appear more often
+            if (Math.random() < 0.7) { //speed
                 letter = targetPhrase[Math.floor(Math.random() * targetPhrase.length)];
-            } else {  
-                letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
+            } else {
+                letter = extendedLetters[Math.floor(Math.random() * extendedLetters.length)];
             }
             addLetter(letter);
         }, 250);
     }
+    
 
     function clearFallingLetters() {
         const existingLetters = document.querySelectorAll('.letter');
@@ -90,20 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function restartGame() {
-        stopSound(correctSound); 
-        currentPhrase = "";
-        volume = 0;
-        volumeDisplay.textContent = "0";
-        currentPhraseDisplay.textContent = '_'.repeat(targetPhrase.length);
-        completionMessage.style.display = 'none';
-        clearFallingLetters();
-        clearInterval(letterInterval);
-        hasPlayedSound = false;
-        startFallingLetters(); 
-    }
-
     restartBtn.addEventListener('click', restartGame);
 
-    startFallingLetters(); 
+    startFallingLetters();
 });
